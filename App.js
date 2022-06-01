@@ -1,6 +1,6 @@
 
 function computerPlay(){
-    let aux1 = Math.floor(Math.random()*2)+1;
+    let aux1 = Math.floor(Math.random()*3)+1;
     let aux2;
     if(aux1 == 1){
         aux2 = 'pedra';
