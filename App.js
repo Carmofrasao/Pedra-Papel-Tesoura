@@ -1,3 +1,11 @@
+const pedra = document.querySelector('#pedra');
+const papel = document.querySelector('#papel');
+const tesoura = document.querySelector('#tesoura');
+
+let playerSelection;
+let computerSelection;
+let pontuacaoc = 0;
+let pontuacaou = 0;
 
 function computerPlay(){
     let aux1 = Math.floor(Math.random()*3)+1;
@@ -14,7 +22,7 @@ function computerPlay(){
     return aux2;
 }
 
-function rodada(playerSelection, computerSelection){
+function rodada(){
     playerSelection = playerSelection.toLowerCase();
     if(playerSelection == computerSelection){
         return [0, 'Empate'];
@@ -41,18 +49,15 @@ function rodada(playerSelection, computerSelection){
 
 function jogada(str){
     playerSelection = str;
-    console.log(str);
 }
 
 function game(){
-    pedra.addEventListener('click', jogada('pedra'));
-
-    papel.addEventListener('click', jogada('papel'));
-    
-    tesoura.addEventListener('click', jogada('tesoura'));
+    pedra.addEventListener('click', () => jogada('pedra'));
+    papel.addEventListener('click', () => jogada('papel'));
+    tesoura.addEventListener('click', () => jogada('tesoura'));
 
     computerSelection = computerPlay();
-    let resultado = rodada(playerSelection, computerSelection);
+    let resultado = rodada();
     console.log(resultado[1]);
     if(resultado[0] == 1){
         pontuacaou += 1;
@@ -70,15 +75,6 @@ function game(){
     else{
         console.log('Empate!');
     }
-}
-
-const pedra = document.querySelector('#pedra');
-const papel = document.querySelector('#papel');
-const tesoura = document.querySelector('#tesoura');
-
-let playerSelection;
-let computerSelection;
-let pontuacaoc = 0;
-let pontuacaou = 0; 
+} 
 
 game();
