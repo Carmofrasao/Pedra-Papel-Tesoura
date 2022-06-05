@@ -39,24 +39,18 @@ function rodada(playerSelection, computerSelection){
     }
 }
 
-function game(){
-    let playerSelection;
-    let computerSelection;
-    let pontuacaoc = 0;
-    let pontuacaou = 0; 
-    
-    pedra.addEventListener('click', () => {
-        playerSelection = 'pedra';
-    });
+function jogada(str){
+    playerSelection = str;
+    console.log(str);
+}
 
-    papel.addEventListener('click', () => {
-        playerSelection = 'papel';
-    });
+function game(){
+    pedra.addEventListener('click', jogada('pedra'));
+
+    papel.addEventListener('click', jogada('papel'));
     
-    tesoura.addEventListener('click', () => {
-        playerSelection = 'tesoura';
-    });
-    
+    tesoura.addEventListener('click', jogada('tesoura'));
+
     computerSelection = computerPlay();
     let resultado = rodada(playerSelection, computerSelection);
     console.log(resultado[1]);
@@ -81,5 +75,10 @@ function game(){
 const pedra = document.querySelector('#pedra');
 const papel = document.querySelector('#papel');
 const tesoura = document.querySelector('#tesoura');
+
+let playerSelection;
+let computerSelection;
+let pontuacaoc = 0;
+let pontuacaou = 0; 
 
 game();
