@@ -14,55 +14,59 @@ function computerPlay(){
     return aux2;
 }
 
-function rodada(playerSelection, computerSelection){
-    playerSelection = playerSelection.toLowerCase();
+function rodada(){
     if(playerSelection == computerSelection){
-        return [0, 'Empate'];
-    }
-    else if(playerSelection == 'pedra' && computerSelection == 'papel'){
-        return [2, 'Você perdeu! papel bate pedra'];
-    }
-    else if(playerSelection == 'pedra' && computerSelection == 'tesoura'){
-        return [1, 'Você ganhou! pedra bate tesoura'];
-    }
-    else if(playerSelection == 'papel' && computerSelection == 'pedra'){
-        return [1, 'Você ganhou! papel bate pedra'];
-    }
-    else if(playerSelection == 'papel' && computerSelection == 'tesoura'){
-        return [2, 'Você perdeu! tesoura bate papel'];
-    }
-    else if(playerSelection == 'tesoura' && computerSelection == 'pedra'){
-        return [2, 'Você perdeu! pedra bate tesoura'];
+        return 0;
     }
     else if(playerSelection == 'tesoura' && computerSelection == 'papel'){
-        return [1, 'Você ganhou! tesoura bate papel'];
+        return 1;
+    }
+    else if(playerSelection == 'pedra' && computerSelection == 'tesoura'){
+        return 1;
+    }
+    else if(playerSelection == 'papel' && computerSelection == 'pedra'){
+        return 1;
+    }
+    else if(playerSelection == 'papel' && computerSelection == 'tesoura'){
+        return 2;
+    }
+    else if(playerSelection == 'tesoura' && computerSelection == 'pedra'){
+        return 2;
+    }
+    else if(playerSelection == 'pedra' && computerSelection == 'papel'){
+        return 2;
     }
 }
 
-function game(){
-    
-    let computerSelection;
-    let pontuacaoc = 0;
-    let pontuacaou = 0; 
-    
+function game(){ 
     computerSelection = computerPlay();
-    let resultado = rodada(playerSelection, computerSelection);
-    console.log(resultado[1]);
-    if(resultado[0] == 1){
+    let resultado = rodada();
+    
+    if(resultado == 0){
+        empate += 1;
+    }
+    else if(resultado == 1){
         pontuacaou += 1;
     }
-    else if(resultado[0] == 2){
+    else if(resultado == 2){
         pontuacaoc += 1;
     }
+
+    tela1.textContent = `Usuario: ${pontuacaou}`;
+    tela2.textContent = `Computador: ${pontuacaoc}`;
+    tela3.textContent = `Empate: ${empate}`;
     
-    if(pontuacaoc > pontuacaou){
-        console.log('Você perdeu!');
-    }
-    else if(pontuacaou > pontuacaoc){
-        console.log('Você venceu!');
-    }
-    else{
-        console.log('Empate!');
+    i++;
+    if(i == 5){
+        if(pontuacaoc > pontuacaou){
+            console.log('Você perdeu!');
+        }
+        else if(pontuacaou > pontuacaoc){
+            console.log('Você venceu!');
+        }
+        else{
+            console.log('Empate!');
+        }
     }
 }
 
@@ -71,6 +75,23 @@ let playerSelection;
 const pedra = document.querySelector('#pedra');
 const papel = document.querySelector('#papel');
 const tesoura = document.querySelector('#tesoura');
+
+const result = document.querySelector('#resultado');
+
+const tela1 = document.createElement('div');
+tela1.classList.add('tela1');
+
+const tela2 = document.createElement('div');
+tela2.classList.add('tela2');
+
+const tela3 = document.createElement('div');
+tela2.classList.add('tela3');
+
+let computerSelection;
+let pontuacaoc = 0;
+let pontuacaou = 0;
+let empate = 0;
+let i = 0;
 
 pedra.addEventListener('click', () => {
     playerSelection = 'pedra';
@@ -87,3 +108,6 @@ tesoura.addEventListener('click', () => {
     game();
 });
 
+result.appendChild(tela1);
+result.appendChild(tela2);
+result.appendChild(tela3);
