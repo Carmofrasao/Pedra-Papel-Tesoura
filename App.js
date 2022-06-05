@@ -59,13 +59,13 @@ function game(){
     i++;
     if(i == 5){
         if(pontuacaoc > pontuacaou){
-            console.log('Você perdeu!');
+            tela4.textContent = 'Você perdeu!';
         }
         else if(pontuacaou > pontuacaoc){
-            console.log('Você venceu!');
+            tela4.textContent = 'Você venceu!';
         }
         else{
-            console.log('Empate!');
+            tela4.textContent = 'Empate!';
         }
     }
 }
@@ -86,6 +86,9 @@ tela2.classList.add('tela2');
 
 const tela3 = document.createElement('div');
 tela2.classList.add('tela3');
+
+const tela4 = document.createElement('div');
+tela2.classList.add('tela4');
 
 let computerSelection;
 let pontuacaoc = 0;
@@ -111,3 +114,4 @@ tesoura.addEventListener('click', () => {
 result.appendChild(tela1);
 result.appendChild(tela2);
 result.appendChild(tela3);
+result.appendChild(tela4);
