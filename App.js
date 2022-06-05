@@ -44,18 +44,29 @@ function game(){
     let computerSelection;
     let pontuacaoc = 0;
     let pontuacaou = 0; 
-    for(let i = 1; i <= 5; i++){
-        playerSelection = prompt('pedra, papel ou tesoura?');
-        computerSelection = computerPlay();
-        let resultado = rodada(playerSelection, computerSelection);
-        console.log(resultado[1]);
-        if(resultado[0] == 1){
-            pontuacaou += 1;
-        }
-        else if(resultado[0] == 2){
-            pontuacaoc += 1;
-        }
+    
+    pedra.addEventListener('click', () => {
+        playerSelection = 'pedra';
+    });
+
+    papel.addEventListener('click', () => {
+        playerSelection = 'papel';
+    });
+    
+    tesoura.addEventListener('click', () => {
+        playerSelection = 'tesoura';
+    });
+    
+    computerSelection = computerPlay();
+    let resultado = rodada(playerSelection, computerSelection);
+    console.log(resultado[1]);
+    if(resultado[0] == 1){
+        pontuacaou += 1;
     }
+    else if(resultado[0] == 2){
+        pontuacaoc += 1;
+    }
+    
     if(pontuacaoc > pontuacaou){
         console.log('Você perdeu!');
     }
@@ -66,5 +77,9 @@ function game(){
         console.log('Empate!');
     }
 }
+
+const pedra = document.querySelector('#pedra');
+const papel = document.querySelector('#papel');
+const tesoura = document.querySelector('#tesoura');
 
 game();
