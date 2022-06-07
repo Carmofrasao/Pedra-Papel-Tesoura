@@ -38,6 +38,12 @@ function rodada(){
     }
 }
 
+function visor(){
+    tela1.textContent = `Usuario: ${pontuacaou}`;
+    tela2.textContent = `Computador: ${pontuacaoc}`;
+    tela3.textContent = `Empate: ${empate}`;
+}
+
 function game(){ 
     computerSelection = computerPlay();
     let resultado = rodada();
@@ -52,9 +58,7 @@ function game(){
         pontuacaoc += 1;
     }
 
-    tela1.textContent = `Usuario: ${pontuacaou}`;
-    tela2.textContent = `Computador: ${pontuacaoc}`;
-    tela3.textContent = `Empate: ${empate}`;
+    visor();
     
     i++;
     if(i == 5){
@@ -67,6 +71,16 @@ function game(){
         else{
             tela4.textContent = 'Empate!';
         }
+        i = 0;
+    }
+    if(i == 1){
+        tela4.textContent = '';
+    }
+    visor();
+    if (i == 0){
+        pontuacaoc = 0;
+        pontuacaou = 0;
+        empate = 0;
     }
 }
 
@@ -110,6 +124,8 @@ tesoura.addEventListener('click', () => {
     playerSelection = 'tesoura';
     game();
 });
+
+visor();
 
 result.appendChild(tela1);
 result.appendChild(tela2);
