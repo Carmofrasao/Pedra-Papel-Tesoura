@@ -6,3 +6,4 @@ Feito por Anderson Frasão
 
 Site simples com um jogo de pedra papel e tesoura.
 
+https://carmofrasao.github.io/Pedra-Papel-Tesoura/
